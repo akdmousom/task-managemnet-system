@@ -20,7 +20,7 @@ const NavigationBar = () => {
             
             </ScroolLink></li>
 
-            <li> <ScroolLink to='contact-us' 
+            <li> <ScroolLink to='contactUs' 
             spy={true}
             smooth={true}
             offset={50}
@@ -30,7 +30,7 @@ const NavigationBar = () => {
 
     </>
     return (
-        <div className="navbar bg-secondary sticky">
+        <div className="navbar z-10 bg-secondary sticky">
             <div className="navbar-start  ">
                 <div className="dropdown">
                     <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
