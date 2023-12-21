@@ -1,3 +1,4 @@
+import './NavigationBars.scss'
 const NavigationBar = () => {
     const navItem = <>
 

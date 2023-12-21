@@ -3,7 +3,7 @@ import NavigationBar from "../Components/NavigationBar/NavigationBar";
 
 const MainLayout = () => {
     return (
-        <div className="max-w-[1367px] mx-auto">
+        <div className="max-w-[1367px] mx-auto font-poppins">
             {/* Navigation bar added here */}
             <NavigationBar/>
             <Outlet/>
