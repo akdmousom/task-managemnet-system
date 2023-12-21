@@ -1,7 +1,13 @@
-.navbar{
-    li{
+.navbar {
+    li {
         color: white;
-        font-family: 'Times New Roman', Times, serif;
-        font-weight: 700;
+
+    }
+
+    li:hover {
+        background-image: linear-gradient(to right, #91eb7b, #9fe88d);
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+
     }
 }

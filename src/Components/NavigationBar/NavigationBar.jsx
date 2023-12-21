@@ -1,9 +1,30 @@
 import './NavigationBars.scss'
+import { Link as ScroolLink } from 'react-scroll';
 const NavigationBar = () => {
     const navItem = <>
 
-        <li><a>Home</a></li>
-        <li><a>About</a></li>
+        <li> <ScroolLink to='/' 
+            spy={true}
+            smooth={true}
+            offset={50}
+            duration={500} >Home
+            
+            </ScroolLink></li>
+        <li> <ScroolLink to='about-us' 
+            spy={true}
+            smooth={true}
+            offset={50}
+            duration={500} >About-us
+            
+            </ScroolLink></li>
+
+            <li> <ScroolLink to='contact-us' 
+            spy={true}
+            smooth={true}
+            offset={50}
+            duration={500} >Contact-Us
+            
+            </ScroolLink></li>
 
     </>
     return (
@@ -19,7 +40,7 @@ const NavigationBar = () => {
 
                     </ul>
                 </div>
-                <a className="btn btn-ghost text-xl">daisyUI</a>
+                <a className="btn btn-ghost text-primary text-xl">daisyUI</a>
             </div>
             <div className="navbar-center hidden lg:flex">
                 <ul className="menu menu-horizontal px-1">
