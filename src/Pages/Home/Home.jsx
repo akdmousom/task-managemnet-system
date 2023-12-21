@@ -1,8 +1,9 @@
+import HeaderBanner from '../../Components/Home/Header/HeaderBanner';
 import './Home.scss'
 const Home = () => {
     return (
-        <div className='wrapper'>
-            <h1>Home</h1>
+        <div className='wrapper ' id='home'>
+            <HeaderBanner/>
         </div>
     );
 };
