@@ -1,16 +1,22 @@
-import { Navigate, useLocation, useNavigate } from "react-router-dom";
+import { Navigate, useLocation} from "react-router-dom";
 import UseAuth from "../../Hooks/UseAuth";
+import PropTypes from 'prop-types';
 
 const PrivetRouter = ({children}) => {
 
-    const {user} = UseAuth();
-    console.log(user);
-
-    const navigate = useNavigate();
+    const {user, loading} = UseAuth();
 
     const location = useLocation();
 
-    console.log(location);
+    
+
+    if (loading) {
+        return (
+            <>
+                <h1 className="w-full h-full flex justify-center items-center">Loading..</h1>
+            </>
+        );
+    }
 
     if (user === undefined) {
 
@@ -21,5 +27,9 @@ const PrivetRouter = ({children}) => {
 
     return children
 };
+
+PrivetRouter.propTypes = {
+    children : PropTypes.node
+}
 
 export default PrivetRouter;

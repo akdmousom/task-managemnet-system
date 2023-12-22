@@ -8,6 +8,7 @@ import Dashboard from "../../LayOuts/Dashboard";
 import DashBoardHome from "../../Pages/Dashboard/DashBoardHome/DashBoardHome";
 import AddTask from "../../Pages/Dashboard/AddTask/AddTask";
 import PrivetRouter from "../PrivetRoute/PrivetRouter";
+import AllTask from "../../Pages/Dashboard/AllTask/AllTask";
 
 const Router = createBrowserRouter([
     {
@@ -32,6 +33,10 @@ const Router = createBrowserRouter([
             {
                 index: true,
                 element: <PrivetRouter><DashBoardHome/></PrivetRouter>
+            },
+            {
+                path: 'all-task',
+                element: <AllTask/>
             },
             {
                 path: 'add-task',
