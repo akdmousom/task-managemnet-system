@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import './HeaderBanner.scss'
 const HeaderBanner = () => {
     return (
@@ -8,7 +9,7 @@ const HeaderBanner = () => {
                 <div>
                     <h1 className="text-2xl text-center lg:text-start lg:text-4xl font-bold">Notter Morder Task Management System</h1>
                     <p className="py-6 text-center lg:text-start">Morder task management application. This is an user friendly application with this application anyone can mange his/her task. Engineer, Doctor, Businessman, Student any professional background people can use this application.</p>
-                    <div className='flex justify-center items-center lg:grid lg:justify-start lg:items-start'><button className="btn  btn-primary">Let&apos;s Explore</button></div>
+                    <div className='flex justify-center items-center lg:grid lg:justify-start lg:items-start'><Link to={'/dashboard'}><button className="btn  btn-primary">Let&apos;s Explore</button></Link></div>
                 </div>
             </div>
         </div>

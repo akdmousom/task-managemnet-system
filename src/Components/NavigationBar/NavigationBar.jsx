@@ -1,32 +1,50 @@
-import { Link, NavLink } from 'react-router-dom';
+import { Link, NavLink, useNavigate } from 'react-router-dom';
 import './NavigationBars.scss'
 import { Link as ScroolLink } from 'react-scroll';
+import UseAuth from '../../Hooks/UseAuth';
 
 const NavigationBar = () => {
+    const { logOut, user, loading, setLoading } = UseAuth();
+    const navigate = useNavigate();
+
+
+
+    const handleSignout = () => {
+        logOut()
+            .then(() => {
+                console.log("Log-Out Successfully");
+                navigate('/')
+                setLoading(false)
+
+            })
+            .catch(err => {
+                console.log(err + "Something wrong");
+            })
+    }
     const navItem = <>
 
-        <li> <NavLink to='/' 
-            spy={true}
-            smooth={true}
+        <li> <NavLink to='/'
+            spy={'true'}
+            smooth={'true'}
             offset={50}
             duration={500} >Home
-            
-            </NavLink></li>
-        <li> <ScroolLink to='about' 
+
+        </NavLink></li>
+        <li> <ScroolLink to='about'
             spy={true}
             smooth={true}
             offset={50}
             duration={500} >About-us
-            
-            </ScroolLink></li>
 
-            <li> <ScroolLink to='contactUs' 
+        </ScroolLink></li>
+
+        <li> <ScroolLink to='contactUs'
             spy={true}
             smooth={true}
             offset={50}
             duration={500} >Contact-Us
-            
-            </ScroolLink></li>
+
+        </ScroolLink></li>
 
     </>
     return (
@@ -42,14 +60,28 @@ const NavigationBar = () => {
 
                     </ul>
                 </div>
-              <Link to={'/'}><img className='notter hidden lg:block' src="../../../public/notter.png" alt="" /></Link>
+                <Link to={'/'}><img className='notter hidden lg:block' src="/notter.png" alt="" /></Link>
             </div>
             <div className="navbar-center hidden lg:flex">
                 <ul className="menu menu-horizontal px-1">
                     {navItem}
                 </ul>
             </div>
-            <div className="navbar-end">
+            {user ? <div className="navbar-end">
+                <div className="dropdown dropdown-end">
+                    {
+                        loading ? '' : <><div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
+                            <div className="w-10 rounded-full">
+                                <img alt="Tailwind CSS Navbar component" src={user?.photoURL} />
+                            </div>
+                        </div>
+                            <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-10 p-2 shadow bg-base-100 rounded-box w-52">
+                                <li><Link to={'/dashboard'}>Dashboard</Link></li>
+                                <li><button onClick={handleSignout}>Logout</button></li>
+                            </ul></>
+                    }
+                </div>
+            </div> : <div className="navbar-end">
                 <div className="dropdown dropdown-end">
                     <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
                         <div className="w-10 rounded-full">
@@ -57,11 +89,11 @@ const NavigationBar = () => {
                         </div>
                     </div>
                     <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-10 p-2 shadow bg-base-100 rounded-box w-52">
-                        <li><a>Dash Board</a></li>
-                        <li><a>Logout</a></li>
+                        <li><Link to={'login'}><button>Login</button></Link></li>
                     </ul>
                 </div>
-            </div>
+            </div>}
+
         </div>
     );
 };
