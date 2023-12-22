@@ -14,7 +14,18 @@ const AddTask = () => {
       const Axios = UseAxiosPublic();
 
       const onSubmit = async (data) => {
-        const res = await Axios.post('/add-task', data)
+        const {taskTitle, taskDescription, TaskDeadlines, taskLevel  } = data;
+
+        const dataPost = {
+
+            taskTitle,
+            taskDescription,
+            TaskDeadlines,
+            taskLevel,
+            taskStatus : "todo"
+
+        }
+        const res = await Axios.post('/add-task', dataPost)
         if (res) {
 
             toast.success('Task Added Successfully')

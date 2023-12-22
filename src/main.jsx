@@ -6,10 +6,13 @@ import { RouterProvider } from 'react-router-dom'
 import Router from './Routes/PublicRoute/Router.jsx'
 import AuthProvider from './AuthContext/AuthProvider.jsx'
 import { Toaster } from 'react-hot-toast'
+import { QueryClientProvider, QueryClient } from '@tanstack/react-query'
+const queryClient = new QueryClient();
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <Toaster/>
+    <QueryClientProvider client={queryClient}>
     <HelmetProvider>
       <AuthProvider>
         <RouterProvider router={Router}>
@@ -17,5 +20,6 @@ ReactDOM.createRoot(document.getElementById('root')).render(
         </RouterProvider>
       </AuthProvider>
     </HelmetProvider>
-  </React.StrictMode>,
+    </QueryClientProvider>
+  </React.StrictMode>
 )
