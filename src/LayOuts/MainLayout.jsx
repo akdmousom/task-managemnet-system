@@ -4,17 +4,22 @@ import Footer from "../Components/Footer/Footer";
 
 const MainLayout = () => {
     return (
-        <div className="max-w-[1367px] mx-auto font-poppins">
-            {/* Navigation bar added here */}
-            <NavigationBar/>
-           
- 
-            <Outlet/>
+        <>
+            <div className="max-w-[1367px] mx-auto font-poppins">
+                {/* Navigation bar added here */}
+                <NavigationBar />
 
-            <Footer/>
 
-         
-        </div>
+                <Outlet />
+
+
+
+
+            </div>
+            <div className="mt-20">
+            <Footer />
+            </div>
+        </>
     );
 };
 

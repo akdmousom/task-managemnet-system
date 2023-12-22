@@ -13,6 +13,7 @@
     "@tanstack/react-query": "^5.14.2",
     "axios": "^1.6.2",
     "firebase": "^10.7.1",
+    "firebase-tools": "^13.0.2",
     "keen-slider": "^6.8.6",
     "localforage": "^1.10.0",
     "match-sorter": "^6.3.1",

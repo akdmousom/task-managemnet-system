@@ -1,6 +1,6 @@
 const Footer = () => {
     return (
-        <div className="max-w-[1367px]">
+        <div className="max-w-[1367px] ">
             <footer className="footer p-10 bg-base-300 text-base-content">
      
                     <nav className="grid">

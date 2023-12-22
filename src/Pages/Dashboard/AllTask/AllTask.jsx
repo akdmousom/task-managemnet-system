@@ -1,12 +1,16 @@
 import { useQuery } from "@tanstack/react-query";
 import UseAxiosPublic from "../../../Hooks/UseAxiosPublic";
+import UseAuth from "../../../Hooks/UseAuth";
 
 const AllTask = () => {
+    const {user} = UseAuth();
+
+    const email = user?.email
 
     const Axios = UseAxiosPublic();
 
     const allTaskData = async () => {
-        const res = await Axios.get('/all-task')
+        const res = await Axios.get(`/all-task?email=${email}`)
         return res;
     }
 
@@ -15,8 +19,15 @@ const AllTask = () => {
         queryFn: allTaskData,
     })
 
-    const allData = data?.data
-    console.log(data);
+    const handleCompleted = async (id) =>{
+
+        const res = await Axios.patch(`/completed-task/${id}`)
+        console.log(res);
+
+    }
+
+  
+
 
 
 
@@ -39,7 +50,7 @@ const AllTask = () => {
                                     <p className="my-5">Task Description: {data.taskDescription}</p>
                                     <p>Task Dead Line: {data.TaskDeadlines}</p>
                                     <div className="gap-4 flex">
-                                        <button className="btn btn-success">Completed</button>
+                                        <button onClick={()=>handleCompleted(data._id)} className="btn btn-success">Completed</button>
                                         <button className="btn btn-warning">Edit</button>
                                         <button className="btn btn-error">Remove</button>
                                     </div>

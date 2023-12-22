@@ -1,12 +1,12 @@
 import "./ContactUs.scss"
 const ContactUS = () => {
     return (
-        <div id="contactUs" className="min-h-screen contact-us  lg:mt-0">
+        <div id="contactUs" className="min-h-screen contact-us ">
             <div className="hero min-h-screen bg-base-200">
                 <div className="hero-content flex-col lg:flex-row-reverse">
                     <div className="text-center lg:text-left">
-                        <h1 className="text-5xl font-bold">Contact Us</h1>
-                        <p className="py-6"> We are 24/7 available. For more information about this system please contacct now.</p>
+                        <h1 className=" text-2xl lg:text-5xl font-bold">Contact Us</h1>
+                        <p className="py-6 hidden lg:block"> We are 24/7 available. For more information about this system please contacct now.</p>
                     </div>
                     <div className="card shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
                         <form className="card-body">

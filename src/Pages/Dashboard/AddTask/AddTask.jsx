@@ -1,7 +1,7 @@
 import { useForm } from "react-hook-form";
 import UseAxiosPublic from "../../../Hooks/UseAxiosPublic";
 import toast from "react-hot-toast";
-import { useRef } from "react";
+import UseAuth from "../../../Hooks/UseAuth";
 
 const AddTask = () => {
     const {
@@ -9,7 +9,11 @@ const AddTask = () => {
         handleSubmit,
       } = useForm();
 
-      const formRef = useRef(null)
+      const {user} = UseAuth()
+
+
+      const email = user?.email;
+    
 
       const Axios = UseAxiosPublic();
 
@@ -22,10 +26,11 @@ const AddTask = () => {
             taskDescription,
             TaskDeadlines,
             taskLevel,
-            taskStatus : "todo"
+            taskStatus : "todo",
+            email
 
         }
-        const res = await Axios.post('/add-task', dataPost)
+        const res = await Axios.post(`/add-task`, dataPost)
         if (res) {
 
             toast.success('Task Added Successfully')
@@ -72,7 +77,7 @@ const AddTask = () => {
                                 </select>
                             </div>
                             <div className="form-control mt-6">
-                                <button className="btn btn-primary">Login</button>
+                                <button className="btn btn-primary">Add Task</button>
                             </div>
                         </form>
                     </div>
