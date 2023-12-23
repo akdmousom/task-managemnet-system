@@ -1,6 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import UseAxiosPublic from "../../../Hooks/UseAxiosPublic";
 import UseAuth from "../../../Hooks/UseAuth";
+import { Link} from "react-router-dom";
 
 const AllTask = () => {
     const {user} = UseAuth();
@@ -42,6 +43,8 @@ const AllTask = () => {
 
     
 
+    
+
     const allTaskDatas = data?.data?.filter(data => data?.taskStatus === 'todo')
     const completedTask = data?.data?.filter(data => data?.taskStatus === 'completed')
     const ongoingTask = data?.data?.filter(data => data?.taskStatus === 'ongoing')
@@ -50,7 +53,7 @@ const AllTask = () => {
 
 
     return (
-        <div>
+        <div className="my-20">
             <div className="grid gap-4">
                 <div className=" text-white h-auto font-bold">
 
@@ -70,7 +73,7 @@ const AllTask = () => {
                                     <div className="gap-4 flex">
                                         <button onClick={()=>handleCompleted(data?._id)} className="btn btn-success">Completed</button>
                                         <button onClick={()=>handleOngoing(data?._id)} className="btn btn-warning">Ongoing</button>
-                                        <button className="btn btn-warning">Edit</button>
+                                        <Link to={`/dashboard/edit-task/${data?._id}`}><button className="btn btn-warning">Edit</button></Link>
                                         <button onClick={()=> handleDelete(data?._id)} className="btn btn-error">Remove</button>
                                     </div>
                                 </div>
@@ -97,7 +100,7 @@ const AllTask = () => {
                                     <p>Task Dead Line: {data.TaskDeadlines}</p>
                                     <div className="gap-4 flex">
                                         <button onClick={()=>handleCompleted(data?._id)} className="btn btn-success">Completed</button>
-                                        <button className="btn btn-warning">Edit</button>
+                                        <Link to={`/dashboard/edit-task/${data?._id}`}><button className="btn btn-warning">Edit</button></Link>
                                         <button onClick={()=> handleDelete(data?._id)} className="btn btn-error">Remove</button>
                                     </div>
                                 </div>
