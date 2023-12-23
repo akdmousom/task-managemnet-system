@@ -84,7 +84,7 @@ const EditTask = () => {
                                 </select>
                             </div>
                             <div className="form-control mt-6">
-                                <button className="btn btn-primary">Add Task</button>
+                                <button className="btn btn-primary">Edit Task</button>
                             </div>
                         </form>
                     </div>
