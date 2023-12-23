@@ -14,7 +14,7 @@ const AllTask = () => {
         return res;
     }
 
-    const { data } = useQuery({
+    const { data, refetch } = useQuery({
         queryKey: ['AllTask'],
         queryFn: allTaskData,
     })
@@ -22,11 +22,29 @@ const AllTask = () => {
     const handleCompleted = async (id) =>{
 
         const res = await Axios.patch(`/completed-task/${id}`)
-        console.log(res);
+        refetch();
+        return res
+
+    }
+    const handleOngoing = async (id) =>{
+
+        const res = await Axios.patch(`/ongoing-task/${id}`)
+        refetch();
+        return res
 
     }
 
-  
+    const handleDelete = async (id) =>{
+        const res = await Axios.delete(`/delete-task/${id}`)
+        refetch()
+        return res
+    }
+
+    
+
+    const allTaskDatas = data?.data?.filter(data => data?.taskStatus === 'todo')
+    const completedTask = data?.data?.filter(data => data?.taskStatus === 'completed')
+    const ongoingTask = data?.data?.filter(data => data?.taskStatus === 'ongoing')
 
 
 
@@ -40,7 +58,7 @@ const AllTask = () => {
                     <hr />
 
                     {
-                        data?.data?.map(data => {
+                        allTaskDatas?.map(data => {
                             return <div key={data._id} className="collapse collapse-arrow bg-base-200">
                                 <input type="radio" name="my-accordion-1" />
                                 <div className="collapse-title text-xl font-medium">
@@ -50,9 +68,10 @@ const AllTask = () => {
                                     <p className="my-5">Task Description: {data.taskDescription}</p>
                                     <p>Task Dead Line: {data.TaskDeadlines}</p>
                                     <div className="gap-4 flex">
-                                        <button onClick={()=>handleCompleted(data._id)} className="btn btn-success">Completed</button>
+                                        <button onClick={()=>handleCompleted(data?._id)} className="btn btn-success">Completed</button>
+                                        <button onClick={()=>handleOngoing(data?._id)} className="btn btn-warning">Ongoing</button>
                                         <button className="btn btn-warning">Edit</button>
-                                        <button className="btn btn-error">Remove</button>
+                                        <button onClick={()=> handleDelete(data?._id)} className="btn btn-error">Remove</button>
                                     </div>
                                 </div>
                             </div>
@@ -67,7 +86,7 @@ const AllTask = () => {
                     <hr />
 
                     {
-                        data?.data?.map(data => {
+                        ongoingTask?.map(data => {
                             return <div key={data._id} className="collapse collapse-arrow bg-base-200">
                                 <input type="radio" name="my-accordion-1" />
                                 <div className="collapse-title text-xl font-medium">
@@ -77,9 +96,9 @@ const AllTask = () => {
                                     <p className="my-5">Task Description: {data.taskDescription}</p>
                                     <p>Task Dead Line: {data.TaskDeadlines}</p>
                                     <div className="gap-4 flex">
-                                        <button className="btn btn-success">Completed</button>
+                                        <button onClick={()=>handleCompleted(data?._id)} className="btn btn-success">Completed</button>
                                         <button className="btn btn-warning">Edit</button>
-                                        <button className="btn btn-error">Remove</button>
+                                        <button onClick={()=> handleDelete(data?._id)} className="btn btn-error">Remove</button>
                                     </div>
                                 </div>
                             </div>
@@ -91,23 +110,21 @@ const AllTask = () => {
                     <h1>Completed</h1>
                     <hr />
                     {
-                        data?.data?.map(data => {
-                            return <div key={data._id} className="collapse collapse-arrow bg-base-200">
-                                <input type="radio" name="my-accordion-1" />
-                                <div className="collapse-title text-xl font-medium">
-                                    {data.taskTitle}
-                                </div>
-                                <div className="collapse-content">
-                                    <p className="my-5">Task Description: {data.taskDescription}</p>
-                                    <p>Task Dead Line: {data.TaskDeadlines}</p>
-                                    <div className="gap-4 flex">
-                                        <button className="btn btn-success">Completed</button>
-                                        <button className="btn btn-warning">Edit</button>
-                                        <button className="btn btn-error">Remove</button>
-                                    </div>
+                        completedTask?.map(data => <div key={data._id} className="collapse collapse-arrow bg-base-200">
+                            <input type="radio" name="my-accordion-1" />
+                            <div className="collapse-title text-xl font-medium">
+                                {data.taskTitle}
+                            </div>
+                            <div className="collapse-content">
+                                <p className="my-5">Task Description: {data.taskDescription}</p>
+                                <p>Task Dead Line: {data.TaskDeadlines}</p>
+                                <div className="gap-4 flex">
+                                    <button className="btn btn-warning">Edit</button>
+                                    <button onClick={()=> handleDelete(data?._id)} className="btn btn-error">Remove</button>
                                 </div>
                             </div>
-                        })
+                        </div>
+                    )
                     }
 
                 </div>
