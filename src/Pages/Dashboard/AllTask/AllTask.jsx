@@ -119,7 +119,6 @@ const AllTask = () => {
                                 <p className="my-5">Task Description: {data.taskDescription}</p>
                                 <p>Task Dead Line: {data.TaskDeadlines}</p>
                                 <div className="gap-4 flex">
-                                    <button className="btn btn-warning">Edit</button>
                                     <button onClick={()=> handleDelete(data?._id)} className="btn btn-error">Remove</button>
                                 </div>
                             </div>
