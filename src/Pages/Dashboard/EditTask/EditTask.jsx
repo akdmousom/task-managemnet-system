@@ -3,8 +3,10 @@ import UseAxiosPublic from "../../../Hooks/UseAxiosPublic";
 import { useQuery } from "@tanstack/react-query";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
+import AOS from "aos";
 
 const EditTask = () => {
+    AOS.init();
     const {id} = useParams();
 
      const Axios = UseAxiosPublic();
@@ -47,7 +49,7 @@ const EditTask = () => {
       }
 
     return (
-        <div>
+        <div data-aos="fade-up">
             <div className="hero min-h-screen w-full ">
                 <div className="hero-content flex-col lg:flex-row-reverse">
 
