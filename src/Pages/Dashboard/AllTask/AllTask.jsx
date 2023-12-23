@@ -2,6 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import UseAxiosPublic from "../../../Hooks/UseAxiosPublic";
 import UseAuth from "../../../Hooks/UseAuth";
 import { Link} from "react-router-dom";
+import toast from "react-hot-toast";
 
 const AllTask = () => {
     const {user} = UseAuth();
@@ -24,6 +25,7 @@ const AllTask = () => {
 
         const res = await Axios.patch(`/completed-task/${id}`)
         refetch();
+        toast.success("Task Status Set To Completed")
         return res
 
     }
@@ -31,6 +33,7 @@ const AllTask = () => {
 
         const res = await Axios.patch(`/ongoing-task/${id}`)
         refetch();
+        toast.success("Task Status Set To Ongoing")
         return res
 
     }
@@ -38,6 +41,7 @@ const AllTask = () => {
     const handleDelete = async (id) =>{
         const res = await Axios.delete(`/delete-task/${id}`)
         refetch()
+        toast.success("Task Successfully Deleted")
         return res
     }
 
